@@ -61,7 +61,7 @@ static BOOL isSecondAttempt = NO;
                     NSLog(@"[ISIN-TICKER][%i] %@,%@,%@,%@", nextIndex - 1, isin, values[@"exchCode"], values[@"name"], values[@"ticker"]);
                     [self.result appendFormat:@"[ISIN-TICKER][%i] %@,%@,%@,%@\n", nextIndex - 1, isin, values[@"exchCode"], values[@"name"], values[@"ticker"]];
                     
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                         if (nextIndex < self.isins.count) {
                             [self saveToFile];
                             [self requestWithIndex:nextIndex];
@@ -72,7 +72,7 @@ static BOOL isSecondAttempt = NO;
                     });
                 } else {
                     NSLog(@"[ISIN-TICKER] other structure %@", object);
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                         [self saveToFile];
                         if (!isSecondAttempt) {
                             isSecondAttempt = YES;
@@ -84,7 +84,7 @@ static BOOL isSecondAttempt = NO;
                 }
             } else {
                 NSLog(@"[ISIN-TICKER] request error %@", error);
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     if (nextIndex < self.isins.count) {
                         [self saveToFile];
                         
